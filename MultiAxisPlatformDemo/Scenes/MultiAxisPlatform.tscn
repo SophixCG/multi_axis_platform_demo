@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyl07hogk5e0m"]
+
+[ext_resource type="Script" uid="uid://cjoou6pqs3s2d" path="res://Scripts/MultiAxisPlatform.gd" id="1_7ytny"]
+[ext_resource type="Texture2D" uid="uid://bejwsl8fsa5cb" path="res://icon.svg" id="2_vq7gp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ws6m2"]
+size = Vector2(128, 28)
+
+[node name="MultiAxisPlatform" type="AnimatableBody2D"]
+script = ExtResource("1_7ytny")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1, 0.203125)
+texture = ExtResource("2_vq7gp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ws6m2")
+one_way_collision = true
+debug_color = Color(0, 0.537255, 0, 0.419608)
+
+[node name="LeftCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(-75, 0)
+collision_mask = 8
+
+[node name="RightCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(73, 0)
+collision_mask = 8
+
+[node name="UpCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, -24)
+collision_mask = 8
+
+[node name="DownCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 24)
+collision_mask = 8

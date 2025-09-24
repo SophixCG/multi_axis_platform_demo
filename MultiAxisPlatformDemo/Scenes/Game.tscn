@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://bo4l40wckr14"]
+
+[ext_resource type="PackedScene" uid="uid://cco2r614aegq0" path="res://Scenes/Player.tscn" id="1_iukft"]
+[ext_resource type="Texture2D" uid="uid://bejwsl8fsa5cb" path="res://icon.svg" id="2_gl6un"]
+[ext_resource type="PackedScene" uid="uid://cyl07hogk5e0m" path="res://Scenes/MultiAxisPlatform.tscn" id="3_j5yw3"]
+[ext_resource type="PackedScene" uid="uid://bjvyorqfq5b7r" path="res://Scenes/LevelDesign/Barrier.tscn" id="4_b2bpf"]
+[ext_resource type="PackedScene" uid="uid://kmxf5odu2o4p" path="res://Scenes/LevelDesign/Ground.tscn" id="4_kldst"]
+[ext_resource type="PackedScene" uid="uid://2vjilbifc1ik" path="res://Scenes/EndZone.tscn" id="6_7lihs"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_j5yw3"]
+blend_mode = 3
+
+[node name="Game" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource("1_iukft")]
+z_index = 6
+position = Vector2(0, 114)
+collision_layer = 1
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_bottom = 500
+position_smoothing_enabled = true
+
+[node name="Platforms" type="Node" parent="."]
+
+[node name="MultiAxisPlatform1" parent="Platforms" instance=ExtResource("3_j5yw3")]
+position = Vector2(1586, 195)
+Speed = 240
+xAxisDirection = -1.0
+
+[node name="MultiAxisPlatform2" parent="Platforms" instance=ExtResource("3_j5yw3")]
+position = Vector2(2280, 101)
+Speed = 240
+XDirection = false
+
+[node name="Level" type="Node" parent="."]
+
+[node name="Barrier" parent="Level" instance=ExtResource("4_b2bpf")]
+position = Vector2(2280, -533)
+rotation = -1.57079
+
+[node name="Ground" parent="Level" instance=ExtResource("4_kldst")]
+position = Vector2(0, 236)
+
+[node name="Ground2" parent="Level" instance=ExtResource("4_kldst")]
+position = Vector2(2280, 237)
+
+[node name="BackgroundSprite2D" type="Sprite2D" parent="."]
+z_index = -6
+texture_repeat = 2
+material = SubResource("CanvasItemMaterial_j5yw3")
+scale = Vector2(0.545, 0.545)
+texture = ExtResource("2_gl6un")
+region_enabled = true
+region_rect = Rect2(0, 0, 25600, 25600)
+metadata/_edit_lock_ = true
+
+[node name="EndZone" parent="." instance=ExtResource("6_7lihs")]
+position = Vector2(0, 384)
